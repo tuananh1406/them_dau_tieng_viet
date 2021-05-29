@@ -1,29 +1,25 @@
 # coding: utf-8
 '''Chương trình chuyển tiếng việt không dấu sang có dấu'''
 import re
-import pickle
+# import pickle
 import json
 from tqdm import tqdm
 import glob2
 
 
-# https://realpython.com/python-encodings-guide/
-# List các ký tự hợp lệ trong tiếng Việt
-intab_l = "ạảãàáâậầấẩẫăắằặẳẵóòọõỏôộổỗồốơờớợởỡéèẻẹẽêếềệểễúùụủũưựữửừứíìịỉĩýỳỷỵỹđ"
-ascii_lowercase = 'abcdefghijklmnopqrstuvwxyz'
-digits = '0123456789'
-punctuation = r"""!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""
-whitespace = ' '
-accept_strings = intab_l + ascii_lowercase + digits + punctuation + whitespace
-r = re.compile('^[' + accept_strings + ']+$')
-
-
-# Một câu sẽ được coi là hợp lệ nếu có các ký tự nằm trong accept_strings
 def _check_tieng_viet(seq):
-    if re.match(r, seq.lower()):
-        return True
-    else:
-        return False
+    # Một câu sẽ được coi là hợp lệ nếu có các ký tự nằm trong accept_strings
+
+    # https://realpython.com/python-encodings-guide/
+    # List các ký tự hợp lệ trong tiếng Việt
+    intab_l = "ạảãàáâậầấẩẫăắằặẳẵóòọõỏôộổỗồốơờớợởỡéèẻẹẽêếềệểễúùụủũưựữửừứíìịỉĩýỳỷỵỹđ"
+    ascii_lowercase = 'abcdefghijklmnopqrstuvwxyz'
+    digits = '0123456789'
+    punctuation = r"""!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""
+    whitespace = ' '
+    accept_strings = intab_l + ascii_lowercase + digits + punctuation + whitespace
+    result = re.compile('^[' + accept_strings + ']+$')
+    return bool(re.match(result, seq.lower()))
 
 
 def save_train(path_train_dir, path_train_file):
