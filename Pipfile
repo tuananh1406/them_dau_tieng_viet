@@ -4,10 +4,10 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-wikiextractor = "*"
 ipython = "*"
 tqdm = "*"
 glob2 = "*"
+wikiextractor = "==0.1"
 
 [dev-packages]
 

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "bf13e6c4d9d737b5b63b79fc654d1844a2ff1e54cfa88aa9b1be0f00e6b63b7c"
+            "sha256": "2f83294aaac824bedb6da14246dd766b8f055b656783842a5acab5262af2c2e5"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -133,11 +133,10 @@
         },
         "wikiextractor": {
             "hashes": [
-                "sha256:a6b5905eabae49aaa9a2f55726410f655103bdc6119d73b2b95fd36fb783cf23",
-                "sha256:cd91e892afd91a63ef27b41a2a3135a94622d6645e2375e0438d0c95cc4216c1"
+                "sha256:b8c0389fb27d42f55ccf0c28f5da2217a90d2e3b67be4afa4bbd2a958f629102"
             ],
             "index": "pypi",
-            "version": "==3.0.4"
+            "version": "==0.1"
         }
     },
     "develop": {}
