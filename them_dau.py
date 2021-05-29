@@ -70,9 +70,46 @@ def remove_tone_line(input_string):
     return non_dia_str
 
 
+def split_train_val_test(path_train_file):
+    '''Chia dữ liệu thành các tập train, val, test'''
+    train_idx_500k = []
+    train_opt_500k = []
+    train_ipt_500k = []
+    val_idx_50k = []
+    val_opt_50k = []
+    val_ipt_50k = []
+    test_idx_50k = []
+    test_opt_50k = []
+    test_ipt_50k = []
+
+    for i in tqdm(range(600000)):
+        [idx, origin_seq] = path_train_file[i].split('\t')
+        try:
+            non_acc_seq = remove_tone_line(origin_seq)
+        except Exception as error:
+            print('error remove tone line at sequence {}', str(i))
+            print(error)
+            continue
+        if i < 500000:
+            train_idx_500k.append(idx)
+            train_opt_500k.append(origin_seq)
+            train_ipt_500k.append(non_acc_seq)
+        elif i < 550000:
+            val_idx_50k.append(idx)
+            val_opt_50k.append(origin_seq)
+            val_ipt_50k.append(non_acc_seq)
+        else:
+            test_idx_50k.append(idx)
+            test_opt_50k.append(origin_seq)
+            test_ipt_50k.append(non_acc_seq)
+
+
 if __name__ == '__main__':
     is_vn = _check_tieng_viet('tiếng việt là ngôn ngữ của tôi')
     print(is_vn)
     khong_dau = remove_tone_line('Đi một ngày đàng học 1 sàng khôn')
     print(khong_dau)
-    # save_train('output/*/*', 'train_tieng_viet.txt')
+    # path_train_dir = 'output/*/*'
+    # path_train_file = 'train_tieng_viet.txt'
+    # save_train(path_train_dir, path_train_file)
+    # split_train_val_test(path_train_file)
