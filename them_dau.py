@@ -1,7 +1,7 @@
 # coding: utf-8
 '''Chương trình chuyển tiếng việt không dấu sang có dấu'''
 import re
-# import pickle
+import pickle
 import json
 from tqdm import tqdm
 import glob2
@@ -20,6 +20,12 @@ def _check_tieng_viet(seq):
     accept_strings = intab_l + ascii_lowercase + digits + punctuation + whitespace
     result = re.compile('^[' + accept_strings + ']+$')
     return bool(re.match(result, seq.lower()))
+
+
+def _save_pickle(filename, obj):
+    '''Lưu dữ liệu để tái sử dụng sau này'''
+    with open(filename, 'wb') as f:
+        pickle.dump(obj, f)
 
 
 def save_train(path_train_dir, path_train_file):
@@ -102,6 +108,9 @@ def split_train_val_test(path_train_file):
             test_idx_50k.append(idx)
             test_opt_50k.append(origin_seq)
             test_ipt_50k.append(non_acc_seq)
+    _save_pickle('train_tv_idx_500k.pkl', train_idx_500k)
+    _save_pickle('val_tv_idx_50k.pkl', val_idx_50k)
+    _save_pickle('test_tv_idx_50k.pkl', test_idx_50k)
 
 
 if __name__ == '__main__':
