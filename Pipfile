@@ -7,6 +7,7 @@ name = "pypi"
 wikiextractor = "*"
 ipython = "*"
 tqdm = "*"
+glob2 = "*"
 
 [dev-packages]
 
